@@ -1,8 +1,3 @@
-// DisciplineTerminal.jsx — Full replacement for App.jsx
-// Stack: React + Recharts | Fonts: IBM Plex Serif + IBM Plex Mono
-// Theme: Dark/Light toggle | Accent: Deep Emerald #0F766E only
-// Layout: Sharp grid, dense, no gradients, no glass, no purple
-
 import Dashboard from "./pages/Dashboard.jsx";
 export default function App() { return <Dashboard />; }
 
