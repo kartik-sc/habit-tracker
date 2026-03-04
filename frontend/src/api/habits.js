@@ -3,28 +3,38 @@
 // All functions mirror the exact REST contract.
 
 const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
-const USE_MOCK = true;
+const USE_MOCK = false;
 
 // ─── Mock state (in-memory, survives re-renders via module scope) ─────────────
 const _habits = [
-  { id: 1, name: "Morning Run",   description: "30 min jog",      completed_today: true,  is_active: true },
+  { id: 1, name: "Morning Run", description: "30 min jog", completed_today: true, is_active: true },
   { id: 2, name: "Read 20 Pages", description: "Non-fiction only", completed_today: false, is_active: true },
-  { id: 3, name: "Meditate",      description: "10 min minimum",   completed_today: true,  is_active: true },
-  { id: 4, name: "No Sugar",      description: "Refined sugar",    completed_today: false, is_active: true },
-  { id: 5, name: "Cold Shower",   description: "2 min minimum",    completed_today: true,  is_active: true },
+  { id: 3, name: "Meditate", description: "10 min minimum", completed_today: true, is_active: true },
+  { id: 4, name: "No Sugar", description: "Refined sugar", completed_today: false, is_active: true },
+  { id: 5, name: "Cold Shower", description: "2 min minimum", completed_today: true, is_active: true },
 ];
 
 const _analytics = {
-  1: { habit_id:1, habit_name:"Morning Run",   current_streak:7,  longest_streak:21, completion_rate_30d:73.3,
-       weekly_data:[{week:"01/06",completed:4},{week:"01/13",completed:5},{week:"01/20",completed:6},{week:"01/27",completed:7},{week:"02/03",completed:5},{week:"02/10",completed:7},{week:"02/17",completed:7}] },
-  2: { habit_id:2, habit_name:"Read 20 Pages", current_streak:3,  longest_streak:14, completion_rate_30d:56.7,
-       weekly_data:[{week:"01/06",completed:3},{week:"01/13",completed:4},{week:"01/20",completed:4},{week:"01/27",completed:5},{week:"02/03",completed:3},{week:"02/10",completed:4},{week:"02/17",completed:3}] },
-  3: { habit_id:3, habit_name:"Meditate",      current_streak:12, longest_streak:30, completion_rate_30d:86.7,
-       weekly_data:[{week:"01/06",completed:6},{week:"01/13",completed:7},{week:"01/20",completed:6},{week:"01/27",completed:7},{week:"02/03",completed:6},{week:"02/10",completed:7},{week:"02/17",completed:7}] },
-  4: { habit_id:4, habit_name:"No Sugar",      current_streak:0,  longest_streak:8,  completion_rate_30d:43.3,
-       weekly_data:[{week:"01/06",completed:2},{week:"01/13",completed:3},{week:"01/20",completed:4},{week:"01/27",completed:3},{week:"02/03",completed:2},{week:"02/10",completed:3},{week:"02/17",completed:1}] },
-  5: { habit_id:5, habit_name:"Cold Shower",   current_streak:5,  longest_streak:12, completion_rate_30d:66.7,
-       weekly_data:[{week:"01/06",completed:5},{week:"01/13",completed:4},{week:"01/20",completed:5},{week:"01/27",completed:6},{week:"02/03",completed:4},{week:"02/10",completed:5},{week:"02/17",completed:5}] },
+  1: {
+    habit_id: 1, habit_name: "Morning Run", current_streak: 7, longest_streak: 21, completion_rate_30d: 73.3,
+    weekly_data: [{ week: "01/06", completed: 4 }, { week: "01/13", completed: 5 }, { week: "01/20", completed: 6 }, { week: "01/27", completed: 7 }, { week: "02/03", completed: 5 }, { week: "02/10", completed: 7 }, { week: "02/17", completed: 7 }]
+  },
+  2: {
+    habit_id: 2, habit_name: "Read 20 Pages", current_streak: 3, longest_streak: 14, completion_rate_30d: 56.7,
+    weekly_data: [{ week: "01/06", completed: 3 }, { week: "01/13", completed: 4 }, { week: "01/20", completed: 4 }, { week: "01/27", completed: 5 }, { week: "02/03", completed: 3 }, { week: "02/10", completed: 4 }, { week: "02/17", completed: 3 }]
+  },
+  3: {
+    habit_id: 3, habit_name: "Meditate", current_streak: 12, longest_streak: 30, completion_rate_30d: 86.7,
+    weekly_data: [{ week: "01/06", completed: 6 }, { week: "01/13", completed: 7 }, { week: "01/20", completed: 6 }, { week: "01/27", completed: 7 }, { week: "02/03", completed: 6 }, { week: "02/10", completed: 7 }, { week: "02/17", completed: 7 }]
+  },
+  4: {
+    habit_id: 4, habit_name: "No Sugar", current_streak: 0, longest_streak: 8, completion_rate_30d: 43.3,
+    weekly_data: [{ week: "01/06", completed: 2 }, { week: "01/13", completed: 3 }, { week: "01/20", completed: 4 }, { week: "01/27", completed: 3 }, { week: "02/03", completed: 2 }, { week: "02/10", completed: 3 }, { week: "02/17", completed: 1 }]
+  },
+  5: {
+    habit_id: 5, habit_name: "Cold Shower", current_streak: 5, longest_streak: 12, completion_rate_30d: 66.7,
+    weekly_data: [{ week: "01/06", completed: 5 }, { week: "01/13", completed: 4 }, { week: "01/20", completed: 5 }, { week: "01/27", completed: 6 }, { week: "02/03", completed: 4 }, { week: "02/10", completed: 5 }, { week: "02/17", completed: 5 }]
+  },
 };
 
 // ─── Mock helpers ─────────────────────────────────────────────────────────────
