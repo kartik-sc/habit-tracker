@@ -7,8 +7,8 @@ Users can create habits, log daily completions, and view analytics including **s
 
 ## Live Demo
 
-- **Frontend (Vercel):** [Add your Vercel URL here]
-- **Backend API (Render):** [Add your Render URL here]/docs
+- **Frontend (Vercel):** [https://habit-tracker-one-ebon.vercel.app/]
+- **Backend API (Render):** [https://habit-tracker-sofb.onrender.com]  /docs
 
 ---
 
